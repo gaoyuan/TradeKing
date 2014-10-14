@@ -1,0 +1,16 @@
+{
+  "name": "TradeKing",
+  "version": "0.0.1",
+  "private": true,
+  "description": "My Trading Strategies",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "oauth": "~0.9.12"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}
