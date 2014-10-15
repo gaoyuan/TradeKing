@@ -12,10 +12,11 @@ Setup
 
 3. Install all the node modules.
 
-	npm install
+	```npm install```
 
 4. Create your own _config.js_.
 
+	```Javascript
 	var config = {};
 	config.account_id = Your_Trade_King_Account_ID;
 	config.api_url = 'https://api.tradeking.com/v1';
@@ -25,8 +26,9 @@ Setup
 	config.access_token = Your_Trade_King_Access_Token;
 	config.access_secret = Your_Trade_King_Access_Secret;
 	module.exports = config;
+	```
 
 5. Start the trading algorithm.
 
-	npm start
+	```npm start```
 
