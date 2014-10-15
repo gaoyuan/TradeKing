@@ -38,6 +38,6 @@ The code is licensed under the MIT License.
 
 Acknowledgement
 ---------------
-Everything is made possible by the developer API <p>provided by <a href=http://www.tradeking.com title=”Powered by TradeKing”>TradeKing</a></p>.
+Everything is made possible by the developer API provided by <a href=http://www.tradeking.com title=”Powered by TradeKing”>TradeKing</a>.
 
 ![Powered by TradeKing](https://developers.tradeking.com/images/logos/PB-TK-small-Gray.gif)
