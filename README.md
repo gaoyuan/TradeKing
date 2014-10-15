@@ -32,3 +32,8 @@ Setup
 
 	```npm start```
 
+LICENSE
+------------
+The code is licensed under the MIT License.
+
+![Powered by TradeKing](https://developers.tradeking.com/images/logos/PB-TK-small-Gray.gif)
