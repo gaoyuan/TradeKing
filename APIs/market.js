@@ -1,4 +1,4 @@
-var utils = require('./utils');
+var utils = require('../utils');
 
 var market_wrapper = function(consumer, config, endpoint, callback){
   consumer.get(

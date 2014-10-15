@@ -1,8 +1,8 @@
 {
   "name": "TradeKing",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
-  "description": "My Trading Strategies",
+  "description": "Trading Strategy for my personal TradeKing account",
   "scripts": {
     "start": "node app.js"
   },
