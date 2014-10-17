@@ -2,6 +2,10 @@ TradeKing
 =========
 Trading Strategy for my personal TradeKing account
 
+Disclaimer
+------------
+Use the software or algorithm in this repository at your own risk. The author is not liable for any losses caused by usage of this code. For more details, please refer to the LICENSE document.
+
 Setup
 ------------
 1. Clone the repository
