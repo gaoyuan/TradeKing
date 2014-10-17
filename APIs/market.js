@@ -158,6 +158,28 @@ topactivegainersbydollarvalue Top active gainers by dollar value
 */
 exports.toplists = function(consumer, config, listType, callback){
   market_wrapper(consumer, config, 'toplists/' + listType + '.json', callback);
-}
+};
 
+// streaming real time quote data
+exports.stream = function(consumer, config, symbols, callback){
+  var request = consumer.get(
+    config.stream_url + '/market/quotes.json?symbols=' + symbols, 
+    config.access_token,
+    config.access_secret
+  );
 
+  request.on('response', function (response) {
+    response.setEncoding('utf8');
+    response.on('data', function(data) {
+      // Parse the JSON data
+      parsed_data = JSON.parse(data);
+      // Return the response
+      callback(parsed_data);
+    });
+    response.on('uncaughtException',function(err){
+      console.log('TCP connection error..')
+    });
+  });
+
+  request.end();
+};

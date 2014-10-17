@@ -1,13 +1,11 @@
-// Use the OAuth module
 var oauth = require('oauth')
   , utils = require('./utils')
   , config = require('./config')
   , accountsAPI = require('./APIs/accounts')
-  , memberAPI = require('./APIs/member')
   , marketAPI = require('./APIs/market')
-  , ordersAPI = require('./APIs/orders');
+  , ordersAPI = require('./APIs/orders')
+  , Laterns = require('./models/lanterns');
 
-// Setup the OAuth Consumer
 var me = new oauth.OAuth(
   "https://developers.tradeking.com/oauth/request_token",
   "https://developers.tradeking.com/oauth/access_token",
@@ -17,17 +15,25 @@ var me = new oauth.OAuth(
   "http://localhost/tradeking/callback",
   "HMAC-SHA1");
 
-/*
-// var oa = new oauth.OAuth(null, null, config.consumer_key, config.consumer_secret, "1.0", null, "HMAC-SHA1");
-var request = me.get("https://stream.tradeking.com/v1/market/quotes?symbols=SPY", 
-config.access_token, 
-config.access_secret);
-
-request.on('response', function (response) {
-    response.setEncoding('utf8');
-    response.on('data', function(data) {
-        console.log(data);
-    })
+var robot = new Laterns();
+marketAPI.stream(me, config, "SPY", function(data){
+  var t = data.trade;
+  if (t && t.last){
+    accountsAPI.balances(me, config, function(balanceData){
+      accountsAPI.holdings(me, config, function(holdingData){
+        var cash = parseFloat(balanceData.accountbalance.money.cashavailable);
+        var holdings = parseInt(holdingData.accountholdings.holding.qty);
+            var qty = robot.run(t);
+        if (qty > 0){
+          ordersAPI.make_order(me, config, utils.FIXML_buy_stock(config.account_id, "SPY", qty), function(data){
+            console.log('Long: ' + qty.toString());
+          });
+        }else if (qty < 0){
+          ordersAPI.make_order(me, config, utils.FIXML_sell_stock(config.account_id, "SPY", qty), function(data){
+            console.log('Short: ' + qty.toString());
+          });
+        }
+      });
+    });
+  }
 });
-request.end();
-*/
