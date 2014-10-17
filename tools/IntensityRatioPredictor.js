@@ -19,26 +19,26 @@ IntensityRatioPredictor.prototype.predict = function(trade){
   var cur_time = new Date(trade.datetime);
   var ratio = 0.0;
   if (this.prev != 0.0 && this.lastTick.getDate() == cur_time.getDate()){
-    var pips = Math.abs(this.prev - cur) / tickSize;
+    var pips = Math.abs(this.prev - cur) / this.tickSize;
 
     var buyintensity = 0.0;
     var sellintensity = 0.0;
 
     if (this.prev > cur){
-      this.bFactor *= exp;
-      if(upFlag){
-        this.sFactor *= exp;
+      this.bFactor *= this.exp;
+      if(this.upFlag){
+        this.sFactor *= this.exp;
       }
-      this.sFactor += exp * pips;
-    }else if (prev < cur){
-      this.sFactor *= exp;
-      if (!upFlag){
-        this.bFactor *= exp;
+      this.sFactor += this.exp * pips;
+    }else if (this.prev < cur){
+      this.sFactor *= this.exp;
+      if (!this.upFlag){
+        this.bFactor *= this.exp;
       }
-      this.bFactor += exp * pips;
+      this.bFactor += this.exp * pips;
     }else{
-      this.bFactor *= exp;
-      this.sFactor *= exp;
+      this.bFactor *= this.exp;
+      this.sFactor *= this.exp;
     }
     buyintensity = this.mu + this.alpha * this.bFactor;
     sellintensity = this.mu + this.alpha * this.sFactor;
